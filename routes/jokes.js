@@ -5,19 +5,10 @@ const router = express.Router();
 router
     .get('/', async (request, response) => {
         try {
-            let beskeder = await controller.getBeskeder();
-            response.send(beskeder);
+            let jokes = await controller.getJokes();
+            response.send(jokes);
         } catch (e) {
             sendStatus(e, response);            
-        }
-    })
-    .get('/:rum', async (request, response) => {
-        try {
-            let { rum } = request.params;
-            let beskeder = await controller.getBeskederByRum(rum);
-            response.send(beskeder);
-        } catch (e) {
-            sendStatus(e, response);
         }
     });
 

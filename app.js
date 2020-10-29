@@ -15,4 +15,6 @@ const port = process.env.PORT || config.localPort; // Heroku
 app.listen(port);
 console.log('Listening on port ' + port + ' ...');
 
+controller.createJoke("hej", "hejsa");
+
 module.exports = app; // test
