@@ -10,6 +10,22 @@ router
         } catch (e) {
             sendStatus(e, response);            
         }
+    })
+    .post('/', async (request, response) => {
+        try {
+            let {author, setup, punchline} = request.body;
+            await controller.createJoke(author, setup, punchline);
+            response.send({message: 'Joke saved!'});            
+        } catch (e) {
+            sendStatus(e, response);
+        }
+    })
+    .delete('/', async (request, response) => {
+        try {
+            await controller.deleteAllJokes();
+        } catch (e) {
+            sendStatus(e, response);
+        }
     });
 
 function sendStatus(e, response) {
