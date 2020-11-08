@@ -1,8 +1,7 @@
 // index.js
 async function main() {
     await generateDefaultHTML();
-    post('https://krdo-joke-registry.herokuapp.com/api/services', { name: "test", address: "test", secret: "antonersej123"});
-    deLete('https://krdo-joke-registry.herokuapp.com/api/services/antonersej123');
+    post('https://krdo-joke-registry.herokuapp.com/api/services', { name: "Jokey Dokey", address: "https://dip-jokeservice.herokuapp.com/", secret: "tophemmeligt"});
 }
 
 async function otherJokes(id) {
