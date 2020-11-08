@@ -1,12 +1,23 @@
-<div class="halfWidth">
-    {{#each objects}}
-    <div class="jokeContainer">
-            <div class="joke">{{setup}} {{punchline}}</div>
-            <div class="info">Submitted by: {{author}}</div>
+<div class="grid">
+    <div class="left">
+        <h1>Add joke</h1>
+        <label for="setup">Setup: </label><br>
+        <input id="setup" type="text"><br>
+        <label for="punchline">Punchline: </label><br>
+        <input id="punchline" type="text"><br>
+        <label for="author">Author: </label><br>
+        <input id="author" type="text"><br>
+        <button onclick="addJoke()" class="padded">Submit</button>
     </div>
-    {{/each}}
-</div>
-<div class="halfWidth">
-    <button id="addJoke">Add new joke</button>
-    <a href="other.html">Other sites</a>
+    <div class="main" id="jokes">
+        <h1>Jokes</h1>
+        {{#each objects}}
+        <div class="jokeContainer">
+                <div class="joke">{{setup}} {{punchline}}</div>
+                <div class="info">Submitted by: {{author}}</div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="right" id="othersites">
+    </div>
 </div>

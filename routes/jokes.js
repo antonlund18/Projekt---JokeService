@@ -20,9 +20,10 @@ router
             sendStatus(e, response);
         }
     })
-    .delete('/', async (request, response) => {
+    .delete('/:setup', async (request, response) => {
         try {
-            await controller.deleteAllJokes();
+            let jokes = await controller.deleteJoke(request.params.setup);
+            response.send(jokes);
         } catch (e) {
             sendStatus(e, response);
         }

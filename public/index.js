@@ -1,18 +1,39 @@
 // index.js
 async function main() {
+    await generateDefaultHTML();
+    post('https://krdo-joke-registry.herokuapp.com/api/services', { name: "test", address: "test", secret: "antonersej123"});
+    deLete('https://krdo-joke-registry.herokuapp.com/api/services/antonersej123');
+}
+
+async function otherJokes(id) {
+    try {
+        let jokes = await get('/api/othersites/' + id);
+        document.getElementById("jokes").innerHTML = await generateTable(jokes, '/jokes.hbs');
+    } catch (e) {
+        console.log(e.name + ": " + e.message);
+    }
+}
+
+async function addJoke() {
+    let joke = {
+        setup: document.getElementById("setup").value,
+        punchline: document.getElementById("punchline").value,
+        author: document.getElementById("author").value
+    }
+    await post('api/jokes', joke);
+    generateDefaultHTML();
+}
+
+async function generateDefaultHTML() {
     try {
         let jokes = await get('/api/jokes');
         document.body.innerHTML = await generateTable(jokes, '/index.hbs');
     } catch (e) {
         console.log(e.name + ": " + e.message);
     }
-    document.getElementById("addJoke").onclick = () => { post("/api/jokes", {author: "Anton", setup: "hej", punchline: "hejsa", score: 1}); main(); };
-}
-
-async function otherJokes(address) {
     try {
-        let jokes = await get(address + '/api/jokes');
-        document.body.innerHTML = await generateTable(jokes, '/jokes.hbs');
+        let sites = await get('/api/othersites');
+        document.getElementById("othersites").innerHTML = await generateTable(sites, '/sites.hbs');
     } catch (e) {
         console.log(e.name + ": " + e.message);
     }
